@@ -14,11 +14,8 @@ function register() {
   // Move on with Auth
   auth.createUserWithEmailAndPassword(email, password)
   .then((res) => {
-    db.collection("user").doc(res.user.uid).set({
+    db.collection('user').doc(res.user.uid).set({
      email:email
-    })
-    .then((docRef) => {
-        console.log("Document written with ID: ", docRef.id);
     })
     .catch((error) => {
         console.error("Error adding document: ", error);
@@ -52,11 +49,10 @@ function login () {
 
   auth.signInWithEmailAndPassword(email, password)
   .then((res) => {{
-    
-    db.collection("user").doc(res.user.uid).set({
-      last_login:Date.now()
-      })
-    // DOne
+    login_time=db.collection('user').doc(res.user.uid).update({
+      loginTime:firebase.firestore.FieldValue.serverTimestamp(),
+    })
+    // done
     alert('User Logged In!!')
   }})
   .catch((error) => {
