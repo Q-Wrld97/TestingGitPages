@@ -16,10 +16,10 @@ function register() {
   .then((res) => {
     db.collection('users').doc(res.user.uid).set({
      email:email
-    })  
-    alert('User Created!!')
-  })
-  .catch((error) => {
+    })
+    alert('User Created!')
+    })
+    .catch((error) => {
     // Firebase will use this to alert of its errors
     var error_code = error.code
     var error_message = error.message
@@ -48,23 +48,19 @@ function login () {
       loginTime:firebase.firestore.FieldValue.serverTimestamp(),
     })
     .then(() => {
-      window.location = 'test.html';})
-    // done
-    alert('User Logged In!!')
-     
-    
-
+      window.location = 'addcourse.html';})
+    //done
+    alert('User Logged In!')
   }})
+
+
   .catch((error) => {
     // Firebase will use this to alert of its errors
     var error_code = error.code
     var error_message = error.message
-
     alert(error_message)
   })
-  
 }
-
 
 
 // Validate Functions
